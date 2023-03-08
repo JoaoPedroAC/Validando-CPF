@@ -2,7 +2,7 @@
 /*
 
 7x  0x  5x  4x  8x  4x  4x  5x  0x
-10  9   8   7   6   5   4   3   2 // quanto maior a quantidade de numeros acima, aumentará em baxo tbm
+10  9   8   7   6   5   4   3   2 // quanto maior a quantidade de numeros acima, aumentará em baixo tbm
 70  0   40  28  48  20  16  15  0 = 237
 
 11 - (237 % 11) = 5 (último digito descoberto)
