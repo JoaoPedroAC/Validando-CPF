@@ -2,7 +2,7 @@
 Este exercício é para treinar lógica de programação!
 
 ## OBJETIVO
-Descobrir o último digito de qualquer CPF(não precisa ser literalmente o último, pode ser antepenúltimo e etc.)
+Descobrir os últimos digitos de qualquer CPF e depois retornar se o cpf é valido ou não
 
 ### TECNOLODIA USADA
 * JavaScript
