@@ -19,12 +19,12 @@ assim monmtaremos parte por parte o cpf, como um quebra cabeça
 const cpf = "070.987.720-0";
 const cpfLimpo = cpf.replace(/\D+/g, "");
 let cpfArray = Array.from(cpfLimpo);
-let count = cpfLimpo.length + 2;
+let count = cpfLimpo.length + 1;
 
 const cpfTratado = cpfArray
   .reduce((acumulator, value) => {
-    count--;
     let resulte = count * Number(value);
+    count--;
     acumulator.push(resulte);
     return acumulator;
   }, [])
