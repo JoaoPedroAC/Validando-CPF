@@ -15,24 +15,64 @@ assim monmtaremos parte por parte o cpf, como um quebra cabeça
 11 - (284 % 11) = 2 (último digito descoberto)
 */
 
-// 070.987.720-03 -> o ultimo numero tem que ser 3, pois corresponde ao ultimo numero do cpf
-const cpf = "070.987.720-0";
-const cpfLimpo = cpf.replace(/\D+/g, "");
-let cpfArray = Array.from(cpfLimpo);
-let count = cpfLimpo.length + 1;
+// 070.987.720-03 -> o ultimo numero tem que ser 3, pois corresponde ao digito do cpf
 
-const cpfTratado = cpfArray
-  .reduce((acumulator, value) => {
-    let resulte = count * Number(value);
-    count--;
-    acumulator.push(resulte);
-    return acumulator;
-  }, [])
-  .join("+");
+// Aqui inicia o processo de "registro" do cpf
+const cpfRegistered = (cpf) => {
+  const cpfLimpo = cpf.replace(/\D+/g, "");
+  const cpfArray = Array.from(cpfLimpo);
 
-const cpfDigit = () => {
-  let restOfNumberOfCPF = 11 - (eval(cpfTratado) % 11);
-  return restOfNumberOfCPF > 9 ? 0 : restOfNumberOfCPF;
+  if (cpfLimpo.length !== 11) return console.log("Cheque o CPF e tente novamente!");
+
+  // Inicia o processo de analise do CPF
+  const analyzingCpf = () => {
+    let count1 = cpfArray.slice(0, -2).length + 1;
+    // 1º digito do CPF
+    const firstDigit = cpfArray
+      .slice(0, -2)
+      .reduce((acumulator, value) => {
+        const resulte = count1 * Number(value);
+        count1--;
+        acumulator.push(resulte);
+        return acumulator;
+      }, [])
+      .join("+");
+
+    let count2 = cpfArray.slice(0, -1).length + 1;
+    // 2º e último digito do CPF
+    const lastDigit = cpfArray
+      .slice(0, -1)
+      .reduce((acumulator, value) => {
+        const resulte = count2 * Number(value);
+        count2--;
+        acumulator.push(resulte);
+        return acumulator;
+      }, [])
+      .join("+");
+
+    // Aqui faz a validação e uni os 2 dígitos
+    const digitOfCpf = () => {
+      // Cálculos
+      const restOfNumberOfCPF1 = 11 - (eval(firstDigit) % 11);
+      const restOfNumberOfCPF2 = 11 - (eval(lastDigit) % 11);
+      // Regra para caso passe de 9 os dígitos
+      const ruleOfRestOfNumberOfCPF1 = restOfNumberOfCPF1 > 9 ? 0 : restOfNumberOfCPF1;
+      const ruleOfRestOfNumberOfCPF2 = restOfNumberOfCPF2 > 9 ? 0 : restOfNumberOfCPF2;
+      const resulte = String(ruleOfRestOfNumberOfCPF1) + String(ruleOfRestOfNumberOfCPF2);
+      console.log('O último dígito do CPF é:',resulte)
+      return resulte;
+    };
+
+    // Aqui definirá se o CPF é falso ou não
+    const answer = () => {
+      if (cpfLimpo === cpfLimpo.slice(0, -2) + digitOfCpf()) {
+        return console.log("CPF válido");
+      } else {
+        return console.log("CPF inválido");
+      }
+    };
+    return answer();
+  };
+  analyzingCpf();
 };
-
-console.log(cpfDigit());
+cpfRegistered("070.987.720-03");
