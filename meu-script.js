@@ -26,8 +26,8 @@ const cpfRegistered = (cpf) => {
 
   // Inicia o processo de analise do CPF
   const analyzingCpf = () => {
-    let count1 = cpfArray.slice(0, -2).length + 1;
     // 1º digito do CPF
+    let count1 = cpfArray.slice(0, -2).length + 1;
     const firstDigit = cpfArray
       .slice(0, -2)
       .reduce((acumulator, value) => {
@@ -38,8 +38,8 @@ const cpfRegistered = (cpf) => {
       }, [])
       .join("+");
 
-    let count2 = cpfArray.slice(0, -1).length + 1;
     // 2º e último digito do CPF
+    let count2 = cpfArray.slice(0, -1).length + 1;
     const lastDigit = cpfArray
       .slice(0, -1)
       .reduce((acumulator, value) => {
@@ -59,7 +59,7 @@ const cpfRegistered = (cpf) => {
       const ruleOfRestOfNumberOfCPF1 = restOfNumberOfCPF1 > 9 ? 0 : restOfNumberOfCPF1;
       const ruleOfRestOfNumberOfCPF2 = restOfNumberOfCPF2 > 9 ? 0 : restOfNumberOfCPF2;
       const resulte = String(ruleOfRestOfNumberOfCPF1) + String(ruleOfRestOfNumberOfCPF2);
-      console.log('O último dígito do CPF é:',resulte)
+      console.log("O último dígito do CPF é:", resulte);
       return resulte;
     };
 
